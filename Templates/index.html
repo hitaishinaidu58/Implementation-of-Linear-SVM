@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banknote Authentication</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            margin: 0;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000018;
+        }
+
+        h1 {
+            text-align: center;
+            color: #183153;
+        }
+
+        p {
+            text-align: center;
+            color: #555;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 11px;
+            margin-top: 7px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 22px;
+            background: #183153;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #28558a;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 14px;
+            text-align: center;
+            border-radius: 6px;
+            background: #e8f4ff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Banknote Detection</h1>
+        <p>Counterfeit Banknote Detection using Linear SVM</p>
+
+        <form action="/predict" method="POST">
+            <label for="variance">Variance</label>
+            <input type="number" step="any" name="variance"
+                   id="variance" required>
+
+            <label for="skewness">Skewness</label>
+            <input type="number" step="any" name="skewness"
+                   id="skewness" required>
+
+            <label for="curtosis">Curtosis</label>
+            <input type="number" step="any" name="curtosis"
+                   id="curtosis" required>
+
+            <label for="entropy">Entropy</label>
+            <input type="number" step="any" name="entropy"
+                   id="entropy" required>
+
+            <button type="submit">Predict Banknote</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            Prediction: {{ prediction }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
